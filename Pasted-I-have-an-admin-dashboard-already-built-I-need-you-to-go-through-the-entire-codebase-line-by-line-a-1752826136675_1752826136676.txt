@@ -1,0 +1,48 @@
+I have an admin dashboard already built. I need you to go through the entire codebase line by line and ensure there are no errors, typos, missing dependencies, or dead links anywhere.
+
+Then, confirm and implement the following so that every feature is fully functional and properly connected to my systems:
+
+✅ Complete order management system with stats cards
+– Display total orders, pending orders, completed orders, and revenue.
+– Pull this live data directly from my connected Shopify account.
+
+✅ Real‑time order tracking and search functionality
+– Ensure orders update live as statuses change in Shopify.
+– Search bar must return matching orders instantly.
+
+✅ Business card generation monitoring
+– Tie the dashboard into the custom business card generation system I built.
+– Make sure I can see status of generated cards and download them from the dashboard.
+
+✅ System health status monitoring
+– Verify the system health panel works and displays accurate backend status (server uptime, script errors, queue backlogs, etc.).
+
+✅ Customer details with contact information
+– Show customer info (name, email, phone) for each order, pulled live from Shopify.
+
+✅ Order status tracking (pending, processing, completed)
+– Ensure status updates flow through from Shopify and reflect instantly on the dashboard.
+
+✅ Revenue analytics and order statistics
+– Make sure revenue stats are calculated correctly from Shopify order data.
+– Display graphs/charts if possible.
+
+✅ Integration checks
+– Confirm the dashboard is connected to:
+• My Shopify account (via API)
+• My business card generation system
+• The Playwright script I uploaded (ensure it can run and report results into the dashboard)
+
+✅ Full code audit
+– Go through all code files line by line to catch any mistakes, dead links, or unused imports.
+– Run tests to confirm all buttons, tabs, and features work.
+
+✅ Profile integration
+– Ensure I can access all admin features by clicking the “Admin Dashboard” tab in my profile.
+
+When finished, run the code, simulate a few orders through Shopify, and show me screenshots or console logs proving:
+– Orders are fetched and statuses update in real time
+– Searching for an order returns correct results
+– Download buttons for business cards work
+– System health panel reports correctly
+– Revenue analytics populate correctly.

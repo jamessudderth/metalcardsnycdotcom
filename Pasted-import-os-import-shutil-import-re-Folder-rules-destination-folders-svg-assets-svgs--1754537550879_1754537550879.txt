@@ -1,0 +1,85 @@
+import os
+import shutil
+import re
+
+# Folder rules
+destination_folders = {
+    '.svg': 'assets/svgs',
+    '.png': 'assets/images',
+    '.jpg': 'assets/images',
+    '.jpeg': 'assets/images',
+    '.gif': 'assets/images',
+    '.css': 'assets/styles',
+    '.html': 'pages'
+}
+
+# Get all files in project
+all_files = []
+for root, dirs, files in os.walk("."):
+    for file in files:
+        if not file.startswith("."):
+            all_files.append(os.path.join(root, file))
+
+# Read all code/text files into one content blob
+code_extensions = ['.js', '.ts', '.jsx', '.tsx', '.html', '.css', '.py']
+all_content = ""
+for file in all_files:
+    if any(file.endswith(ext) for ext in code_extensions):
+        try:
+            with open(file, 'r', encoding='utf-8') as f:
+                all_content += f.read().lower()
+        except:
+            pass  # skip unreadable files
+
+# Make folders if they don’t exist
+for folder in set(destination_folders.values()):
+    os.makedirs(folder, exist_ok=True)
+
+# Track changes
+moved_files = []
+unused_files = []
+
+# Process each file
+for file in all_files:
+    ext = os.path.splitext(file)[1].lower()
+    base = os.path.basename(file)
+    if ext in destination_folders:
+        normalized_base = base.lower()
+        if normalized_base not in all_content:
+            unused_files.append(file)
+        else:
+            # Move file if it's not already in the right place
+            target_folder = destination_folders[ext]
+            new_path = os.path.join(target_folder, base)
+            if os.path.abspath(file) != os.path.abspath(new_path):
+                shutil.move(file, new_path)
+                moved_files.append((file, new_path))
+
+# Update file references in code
+for old_path, new_path in moved_files:
+    old_file = os.path.basename(old_path)
+    new_file = os.path.relpath(new_path).replace("\\", "/")  # Replit-safe
+    for code_file in all_files:
+        if any(code_file.endswith(ext) for ext in code_extensions):
+            try:
+                with open(code_file, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                new_content = re.sub(
+                    rf'(["\'\(]){re.escape(old_file)}(["\'\)])',
+                    rf'\1{new_file}\2',
+                    content
+                )
+                if content != new_content:
+                    with open(code_file, 'w', encoding='utf-8') as f:
+                        f.write(new_content)
+            except:
+                continue
+
+# Report
+print("\n✅ Files moved and updated:")
+for old, new in moved_files:
+    print(f"  {old} ➜ {new}")
+
+print("\n⚠️ Possibly unused files:")
+for file in unused_files:
+    print(f"  {file}")

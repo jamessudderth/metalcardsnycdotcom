@@ -1,0 +1,66 @@
+Here’s a clear, structured explanation you can give to Replit (or paste into Replit’s AI coding assistant or support), telling it exactly what the system should be doing — based on everything you’ve built and previously discussed:
+
+⸻
+
+🛠️ System Requirements for Business Card Generator
+
+Objective:
+Replit needs to ensure that the following full flow is working seamlessly:
+
+⸻
+
+✅ Customer Flow:
+	1.	Template Selection
+When a customer visits the site, they should be able to:
+	•	View all available business card templates.
+	•	Click on a template to select it.
+	2.	Form Entry + Live Preview
+After selecting a template:
+	•	Customer fills in their personal details (name, title, phone, etc.).
+	•	Their info should be injected dynamically into the selected SVG template.
+	•	A live preview of the card with their information should be shown.
+	3.	QR Code Generation
+	•	Simultaneously, a QR code should be generated that links to the customer’s digital profile (a unique URL on the site).
+	•	This QR code should be placed on the back of the business card.
+
+⸻
+
+🖥️ Admin Flow (My Dashboard):
+	4.	Submission & Save
+	•	Once the customer confirms:
+	•	Both front (with info) and back (with QR) SVGs or PNGs should be saved.
+	•	These versions should be sent to the admin dashboard.
+	5.	Admin Preview + Download
+	•	On the admin side, I need to:
+	•	See both the front and back of the finalized card.
+	•	Be able to download those files directly (SVG or PNG) for production.
+
+⸻
+
+🧠 Tech Functionality Summary:
+	•	Inject customer data into correct SVG template.
+	•	Use uploaded SVGs from /public/templates/business-card-temp/{templateName}.svg
+	•	Ensure SVG text layers are editable/dynamic via JS/React (i.e. use <text id="name"> etc. to map inputs).
+	•	Generate and insert QR code (can use libraries like qrcode.react).
+	•	Display a preview of both sides.
+	•	Send finished card assets to admin dashboard (can be handled via Firebase, Supabase, or serverless DB).
+	•	Enable download buttons on admin dashboard.
+
+⸻
+
+📌 What to Fix (copy this if needed):
+
+Replit isn’t currently:
+	•	Injecting the customer’s information into the chosen SVG template
+	•	Generating a preview with that live data
+	•	Creating and attaching the QR code to the back
+	•	Sending the finalized card to my admin dashboard with both front and back images for download
+
+Please review the logic and file linking between:
+	•	Form input → template population
+	•	QR code generation
+	•	Image export → admin dashboard preview/download
+
+⸻
+
+If you’d like, I can help you create a checklist or code template for each part (SVG injection, QR code logic, admin transfer). Just say the word.
